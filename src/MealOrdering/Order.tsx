@@ -76,7 +76,7 @@ function Order(props) {
         setIsModalOpen(true);
     }
     const avaialbleMenu: HTMLCollectionOf<any> = document.getElementsByClassName("meal-type");
-    const removeFocusFromBack:HTMLCollectionOf<any> = document.getElementsByClassName("meal-ordering-home-icon")[0].children;
+    //const removeFocusFromBack:HTMLCollectionOf<any> = document.getElementsByClassName("meal-ordering-home-icon")[0].children;
     useEffect(() => {
         if(isModalOpen) {
             const selectMenuItem: HTMLCollectionOf<any> = document.getElementsByClassName("scrollitems")[0].children;
@@ -100,7 +100,7 @@ function Order(props) {
             }
             const removeFocuFromPlaceOrderBtn: HTMLCollectionOf<any> = document.getElementsByClassName("item-place-order")[0].children;
             removeFocuFromPlaceOrderBtn[0].classList.remove('focusable');
-            removeFocusFromBack[0].classList.remove('focusable');
+            //removeFocusFromBack[0].classList.remove('focusable');
         }
     }, [isModalOpen])
     
@@ -311,12 +311,12 @@ function Order(props) {
             setOrderButtons(0);
         }
     }
-    var backIcon:any = document.getElementsByClassName('meal-ordering-home-icon')[0].children[0];
+    //var backIcon:any = document.getElementsByClassName('meal-ordering-home-icon')[0].children[0];
     function selectMealType(mealType) {
         setMealItems({mealItems: mealType.mealItems});
         setfocusOnMenuItem(mealType.id);
         setFlag(false);
-        backIcon.classList.add('focusable');
+        //backIcon.classList.add('focusable');
         const arrowDown: any  = document.getElementById('section01');
         if(mealType.mealItems.length <= 5) {
             arrowDown.style.display = "none";
@@ -330,7 +330,7 @@ function Order(props) {
     }
 
     function removeFocusFromIcon(menuItem) {
-        backIcon.classList.remove('focusable');
+        //backIcon.classList.remove('focusable');
     }
 
     function selectSubMealType (subMealType) {
