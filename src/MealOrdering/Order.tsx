@@ -322,7 +322,7 @@ function Order(props) {
                         <Col xs lg="1" className="full-fixed-height">
                             <div className="meal-ordering-home-icon text-center">
                                 <Focusable onClickEnter={()=>goToHome(false, orderedList)} >
-                                    <FaChevronLeft />
+                                    <FaChevronLeft onClick={()=>goToHome(false, orderedList)}/>
                                 </Focusable>
                             </div>
                             <h3 className="session-type">Back</h3>
@@ -421,7 +421,7 @@ function Order(props) {
                                                         <Col>
                                                             {!isModalOpen ? (
                                                                 <Focusable onClickEnter={()=>toggleOrderButtons(orderedItem)}>
-                                                                    <Row className="order-wrapper">
+                                                                    <Row onClick={()=>toggleOrderButtons(orderedItem)} className="order-wrapper">
                                                                         <Col sm={2}>
                                                                             <h2 className="item-quantity">{orderedItem.quantity}</h2>
                                                                         </Col>
@@ -458,7 +458,7 @@ function Order(props) {
                                                             <Col sm={6} className="pl-0">
                                                                 {!isModalOpen ? (
                                                                     <Focusable onClickEnter={()=>changeOrderedQuantity(orderedItem)}>
-                                                                        <Button className="item-change-qty">Change Qty</Button>
+                                                                        <Button onClick={()=>changeOrderedQuantity(orderedItem)} className="item-change-qty">Change Qty</Button>
                                                                     </Focusable>
                                                                 ) : (
                                                                     <div onClick={()=>changeOrderedQuantity(orderedItem)}>
@@ -470,7 +470,7 @@ function Order(props) {
                                                             <Col sm={6} className="btn-custom-padding pr-0">
                                                                 {!isModalOpen ? (
                                                                     <Focusable onClickEnter={()=>deleteSelectedOrderedItem(orderedItem)}>
-                                                                        <Button className="item-remove">Remove</Button>
+                                                                        <Button onClick={()=>deleteSelectedOrderedItem(orderedItem)} className="item-remove">Remove</Button>
                                                                     </Focusable>
                                                                 ) : (
                                                                     <div onClick={()=>deleteSelectedOrderedItem(orderedItem)}>
@@ -488,7 +488,7 @@ function Order(props) {
                                         <Row>
                                             <Col sm={10} className="item-place-order">
                                                 <Focusable onClickEnter={()=>goToHome(true, props.mealMain)} >
-                                                    <Button className="item-order-button" disabled={orderedMenuItemsLength ? false : true}>Place</Button>
+                                                    <Button onClick={()=>goToHome(true, props.mealMain)} className="item-order-button" disabled={orderedMenuItemsLength ? false : true}>Place</Button>
                                                 </Focusable>
                                             </Col>
                                         </Row>

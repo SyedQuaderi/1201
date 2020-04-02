@@ -11,7 +11,7 @@ function Sessions(props) {
                     props.state.sessions.today.map((session, i) =>
                     <Focusable  onFocus={() => props.addFocusToActivity(session)} key={i} onUnFocus={() => props.removeFocusFromActivity(session)}>
                         <Button className={"activity-button " + (props.activeFocus === session.id ? "activity-button-active " : "activity-button-inactive")}  
-                                onClick={()=> props.selectActivity(session)}>
+                                onClick={()=> props.addFocusToActivity(session)}>
                                 {props.activityName.today}
                             <div className={"selection-arrow " + (props.activeFocus === session.id ? "selection-arrow-active "  : "selection-arrow-inactive")}>
                             </div>
@@ -27,7 +27,7 @@ function Sessions(props) {
                     props.state.sessions.tomorrow.map((session, i) =>
                     <Focusable  onFocus={() => props.addFocusToActivity(session)} key={i} onUnFocus={() => props.removeFocusFromActivity(session)}>
                         <Button className={"activity-button " + (props.activeFocus === session.id ? "activity-button-active " : "activity-button-inactive")}  
-                                onClick={()=> props.selectActivity(session)}>
+                                onClick={()=> props.addFocusToActivity(session)}>
                                 {props.activityName.tomorrow}
                             <div className={"selection-arrow " + (props.activeFocus === session.id ? "selection-arrow-active "  : "selection-arrow-inactive")}>
                             </div>

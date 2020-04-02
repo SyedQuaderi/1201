@@ -304,7 +304,7 @@ function Main(props) {
                                 <Col xs lg="2" className="">    
                                     <div className="meal-ordering-home-icon text-center">
                                         <Focusable onClickEnter={()=>goToHome()} onFocus={()=> selectHome(0)}>
-                                            <FaHome />
+                                            <FaHome onClick={()=>goToHome()} />
                                         </Focusable>
                                     </div>
                                     <h3 className="session-type">Meals</h3>
@@ -322,7 +322,7 @@ function Main(props) {
                                                     {availableMeals.activeSession.map((meal, i)=>
                                                         <Col sm={4} key={i} className="meal-session">
                                                             <Focusable onClickEnter={()=> orderMeal(meal)}>
-                                                            <Button className={"session-times" + (meal.mealDayId === 1 && mealAvailability === meal.availability ? ' removeFocus' : ' focus')} 
+                                                            <Button onClick={()=> orderMeal(meal)} className={"session-times" + (meal.mealDayId === 1 && mealAvailability === meal.availability ? ' removeFocus' : ' focus')} 
                                                                 >
                                                                 <Row >
                                                                     <Col sm={4} className="text-center icon-container">
