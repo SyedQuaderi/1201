@@ -1,4 +1,5 @@
 import React from 'react';
+import {Row, Col} from 'react-bootstrap';
 import styled from "styled-components";
 import SpatialNavigation, {FocusableSection, Focusable } from 'react-js-spatial-navigation';
 import './Modal.scss';

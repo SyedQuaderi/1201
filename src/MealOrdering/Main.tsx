@@ -45,6 +45,7 @@ function Main(props) {
     }
     const [state, dispatch] = useReducer(reducer, initialState);
     const [activeMeal, setActiveMeal] = useState<any>({indicator: 0});
+    const [currentMeal, setCurrentMeal] = useState<string>('')
     const [mealAvailability, setMealAvailability] = useState<any>('');
     const [focusFlag, setFocusFlag] = useState<boolean>(false);
     const [time, setTime] = useState<any>(new Date());
@@ -52,6 +53,7 @@ function Main(props) {
     const [mealMain, setMealMain] = useState<any>({mealCategory: []});
     const [isConfirmationPageOpen, setIsConfirmationPageOpen] = useState<boolean>(false);
     const [focusHomeBtn, setFocusHomeBtn] = useState<any>({homeBtn: '',sessionToday: '', sessionTomorrow: ''});
+    const sessionFocus:any = useRef(null);
 
     useEffect(()=>{
         const [hideOrderPage] = [document.getElementsByClassName('hide-mealOrdering')];
@@ -71,7 +73,7 @@ function Main(props) {
         .then(response => {dispatch({type: '_FETCH_MEAL_SESSIONS', mealSession: response.data.days[0]});
                             const elementFocus: HTMLCollectionOf<any> = document.getElementsByClassName('section-1');
                             focusToday.current = elementFocus[0];
-                            const home:any = (document.getElementsByClassName("meal-ordering-home-icon")[0].children as HTMLCollectionOf<Element>);
+                            const home = (document.getElementsByClassName("meal-ordering-home-icon")[0].children as HTMLCollectionOf<Element>);
                             const today:any = (document.getElementsByClassName("session-today")[0].children as HTMLCollectionOf<Element>);
                             const tomorrow:any = (document.getElementsByClassName("session-tomorrow")[0].children as HTMLCollectionOf<Element>);
                             setFocusHomeBtn({homeBtn: home, sessionToday: today, sessionTomorrow: tomorrow })
@@ -142,6 +144,7 @@ function Main(props) {
     }, [state])
     const confirmBtn:any = useRef(null);
     const homeBtnFocus:any = useRef(null);
+    
     const [focus, setFocus] = useState<boolean>(false);
     useEffect(()=>{
         if(isConfirmationPageOpen) {
@@ -235,8 +238,6 @@ function Main(props) {
     }, [time, availableMeals.activeSession]);
 
     function addFocusToActivity (session) {
-        //const addFocusFromHomeIcon:any = document.getElementsByClassName('meal-ordering-home-icon')[0].children[0];
-        //addFocusFromHomeIcon.classList.add('focusable');
         setActiveFocus(session.id);
         if(session.id === 1) {
             setAvailableMeals({activeSession: session.mealTime})
@@ -264,10 +265,7 @@ function Main(props) {
         setAvailableMeals({activeSession: []});
         setActiveFocus(activity);
     }
-    function focusOnSessions() {
-        //const removeFocusFromHomeIcon:any = document.getElementsByClassName('meal-ordering-home-icon')[0].children[0];
-        //removeFocusFromHomeIcon.classList.remove('focusable');
-    }
+
     function goToHome () {
         toastr.clear();
         setFocus(false);
@@ -306,7 +304,7 @@ function Main(props) {
                                 <Col xs lg="2" className="">    
                                     <div className="meal-ordering-home-icon text-center">
                                         <Focusable onClickEnter={()=>goToHome()} onFocus={()=> selectHome(0)}>
-                                            <FaHome/>
+                                            <FaHome />
                                         </Focusable>
                                     </div>
                                     <h3 className="session-type">Meals</h3>
@@ -323,13 +321,13 @@ function Main(props) {
                                                     <Row>
                                                     {availableMeals.activeSession.map((meal, i)=>
                                                         <Col sm={4} key={i} className="meal-session">
-                                                            <Focusable onClickEnter={()=> orderMeal(meal)} onFocus={()=> focusOnSessions()}>
-                                                            <Button onClick={()=> orderMeal(meal)} className={"session-times" + (meal.mealDayId === 1 && mealAvailability === meal.availability ? ' removeFocus' : ' focus')} 
-                                                                disabled={meal.mealDayId === 1 && mealAvailability === meal.availability ? true : false}>
+                                                            <Focusable onClickEnter={()=> orderMeal(meal)}>
+                                                            <Button className={"session-times" + (meal.mealDayId === 1 && mealAvailability === meal.availability ? ' removeFocus' : ' focus')} 
+                                                                >
                                                                 <Row >
                                                                     <Col sm={4} className="text-center icon-container">
                                                                         <div className="meal-course-image" >
-                                                                            <img src={meal.image}/>
+                                                                            <img src={meal.image} />
                                                                         </div>
                                                                     </Col>
                                                                     <Col sm={8} className="text-left">
