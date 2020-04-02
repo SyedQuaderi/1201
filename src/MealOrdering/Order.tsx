@@ -77,7 +77,7 @@ function Order(props) {
         setIsModalOpen(true);
     }
     const avaialbleMenu: HTMLCollectionOf<any> = document.getElementsByClassName("meal-type");
-    const removeFocusFromBack:HTMLCollectionOf<any> = document.getElementsByClassName("meal-ordering-home-icon")[0].children;
+    const removeFocusFromBack:HTMLCollectionOf<any> = document.getElementsByClassName("meal-ordering-order-icon");
     useEffect(() => {
         if(isModalOpen) {
             const selectMenuItem: HTMLCollectionOf<any> = document.getElementsByClassName("scrollitems")[0].children;
@@ -97,11 +97,11 @@ function Order(props) {
             
             for(var i=0; i < avaialbleMenu.length; i++) {
                 const removeFocusFromMenu = avaialbleMenu[i].children[0];
-                removeFocusFromMenu.classList.remove('focusable');
+                removeFocusFromMenu.classList.value = removeFocusFromMenu.classList.value.substring(7);
             }
             const removeFocuFromPlaceOrderBtn: HTMLCollectionOf<any> = document.getElementsByClassName("item-place-order")[0].children;
             removeFocuFromPlaceOrderBtn[0].classList.remove('focusable');
-            removeFocusFromBack[0].classList.remove('focusable');
+            removeFocusFromBack[0].children[0].classList.remove('focusable');
         }
     }, [isModalOpen])
     
@@ -112,10 +112,10 @@ function Order(props) {
             removeFocus.classList.add('focusable');
         }
         for(var i=0; i < avaialbleMenu.length; i++) {
-            const removeFocusFromMenu = avaialbleMenu[i].children[0];
-            removeFocusFromMenu.classList.add('focusable');
+            const addFocusFromMenu = avaialbleMenu[i].children[0];
+            addFocusFromMenu.classList.value = 'section'+ addFocusFromMenu.classList.value;
         }
-        removeFocusFromBack[0].classList.add('focusable');
+        removeFocusFromBack[0].children[0].classList.add('focusable');
         const addFocusBackPlaceOrderBtn: HTMLCollectionOf<any> = document.getElementsByClassName("item-place-order")[0].children;
         addFocusBackPlaceOrderBtn[0].classList.add('focusable');
         if(menuItemFocus.current !== null) 
@@ -319,6 +319,7 @@ function Order(props) {
         setMealItems({mealItems: mealType.mealItems});
         setfocusOnMenuItem(mealType.id);
         setFlag(false);
+        removeFocusFromBack[0].children[0].classList.add('focusable');
         const arrowDown: any  = document.getElementById('section01');
         if(mealType.mealItems.length <= 5) {
             arrowDown.style.display = "none";
@@ -326,6 +327,10 @@ function Order(props) {
         else {
             arrowDown.style.display = "block";
         }
+    }
+
+    function removeFocusFromIcon() {
+        removeFocusFromBack[0].children[0].classList.remove('focusable');
     }
 
     function selectSubMealType (subMealType) {
@@ -381,7 +386,7 @@ function Order(props) {
                 <SpatialNavigation>
                     <Row>
                         <Col xs lg="1" className="full-fixed-height">
-                            <div className="meal-ordering-home-icon text-center">
+                            <div className="meal-ordering-order-icon text-center">
                                 <Focusable onClickEnter={()=>goToHome(false, orderedList)} >
                                     <FaChevronLeft onClick={()=>goToHome(false, orderedList)}/>
                                 </Focusable>
@@ -404,7 +409,8 @@ function Order(props) {
                                 <Row className="">
                                     <MenuItems meals={meals} setIsModalOpens={setIsModalOpens}
                                              Focusable={Focusable} Row={Row} Col={Col} Button={Button}
-                                             scrollToBottom={scrollToBottom} scrollToTop={scrollToTop}/>
+                                             scrollToBottom={scrollToBottom} scrollToTop={scrollToTop}
+                                             removeFocusFromIcon={removeFocusFromIcon}/>
                                     <Col sm={5} className="order-summary full-fixed-height">
                                         <Row>
                                             <Col className="order-section">

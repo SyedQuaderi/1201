@@ -238,8 +238,8 @@ function Main(props) {
     }, [time, availableMeals.activeSession]);
 
     function addFocusToActivity (session) {
-        const addFocusFromHomeIcon:any = document.getElementsByClassName('meal-ordering-home-icon')[0].children[0];
-        addFocusFromHomeIcon.classList.add('focusable');
+        const addFocusFromHomeIcon:any = document.getElementsByClassName('meal-ordering-home-icon')[0].children;
+        addFocusFromHomeIcon[0].classList.add('focusable');
         setActiveFocus(session.id);
         if(session.id === 1) {
             setAvailableMeals({activeSession: session.mealTime})
@@ -268,8 +268,8 @@ function Main(props) {
         setActiveFocus(activity);
     }
     function focusOnSessions() {
-        const removeFocusFromHomeIcon:any = document.getElementsByClassName('meal-ordering-home-icon')[0].children[0];
-        removeFocusFromHomeIcon.classList.remove('focusable');
+        const removeFocusFromHomeIcon:any = document.getElementsByClassName('meal-ordering-home-icon')[0].children;
+        removeFocusFromHomeIcon[0].classList.remove('focusable');
     }
     function goToHome () {
         toastr.clear();
