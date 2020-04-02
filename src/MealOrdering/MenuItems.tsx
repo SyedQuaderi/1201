@@ -40,7 +40,7 @@ function MenuItems(props) {
             </props.Focusable>
             )}
             <div id="section01" className="scrollToBottom">
-                <a href="#section02" onClick={()=>props.scrollToBottom()}>><img src={Arrow}/></a>
+                <a href="#section02" onClick={()=>props.scrollToBottom()}><img src={Arrow}/></a>
             </div> 
         </props.Col>
     )
