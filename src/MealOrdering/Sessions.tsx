@@ -5,11 +5,12 @@ import SpatialNavigation, {FocusableSection, Focusable } from 'react-js-spatial-
 function Sessions(props) {
     return (
         <Col sm={3} className="sessions-main">
+            <FocusableSection enterTo={'last-focused'}>
             <Row>
                 <Col className="session-today">
                 {
                     props.state.sessions.today.map((session, i) =>
-                    <Focusable  onFocus={() => props.addFocusToActivity(session)} key={i} onUnFocus={() => props.removeFocusFromActivity(session)}>
+                    <Focusable  onFocus={() => props.addFocusToActivity(session)} key={i} onUnfocus={() => props.removeFocusFromActivity(session)}>
                         <Button className={"activity-button " + (props.activeFocus === session.id ? "activity-button-active " : "activity-button-inactive")}  
                                 onClick={()=> props.addFocusToActivity(session)}>
                                 {props.activityName.today}
@@ -25,7 +26,7 @@ function Sessions(props) {
                 <Col className="session-tomorrow">
                 {
                     props.state.sessions.tomorrow.map((session, i) =>
-                    <Focusable  onFocus={() => props.addFocusToActivity(session)} key={i} onUnFocus={() => props.removeFocusFromActivity(session)}>
+                    <Focusable  onFocus={() => props.addFocusToActivity(session)} key={i} onUnfocus={() => props.removeFocusFromActivity(session)}>
                         <Button className={"activity-button " + (props.activeFocus === session.id ? "activity-button-active " : "activity-button-inactive")}  
                                 onClick={()=> props.addFocusToActivity(session)}>
                                 {props.activityName.tomorrow}
@@ -37,6 +38,7 @@ function Sessions(props) {
                 }
                 </Col>
             </Row>
+            </FocusableSection>
         </Col>
     )
 }

@@ -238,6 +238,8 @@ function Main(props) {
     }, [time, availableMeals.activeSession]);
 
     function addFocusToActivity (session) {
+        const addFocusFromHomeIcon:any = document.getElementsByClassName('meal-ordering-home-icon')[0].children[0];
+        addFocusFromHomeIcon.classList.add('focusable');
         setActiveFocus(session.id);
         if(session.id === 1) {
             setAvailableMeals({activeSession: session.mealTime})
@@ -265,7 +267,10 @@ function Main(props) {
         setAvailableMeals({activeSession: []});
         setActiveFocus(activity);
     }
-
+    function focusOnSessions() {
+        const removeFocusFromHomeIcon:any = document.getElementsByClassName('meal-ordering-home-icon')[0].children[0];
+        removeFocusFromHomeIcon.classList.remove('focusable');
+    }
     function goToHome () {
         toastr.clear();
         setFocus(false);
@@ -321,7 +326,7 @@ function Main(props) {
                                                     <Row>
                                                     {availableMeals.activeSession.map((meal, i)=>
                                                         <Col sm={4} key={i} className="meal-session">
-                                                            <Focusable onClickEnter={()=> orderMeal(meal)}>
+                                                            <Focusable onClickEnter={()=> orderMeal(meal)} onFocus={()=> focusOnSessions()}>
                                                             <Button onClick={()=> orderMeal(meal)} className={"session-times" + (meal.mealDayId === 1 && mealAvailability === meal.availability ? ' removeFocus' : ' focus')} 
                                                                 >
                                                                 <Row >
