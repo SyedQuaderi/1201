@@ -118,7 +118,10 @@ function Order(props) {
         removeFocusFromBack[0].classList.add('focusable');
         const addFocusBackPlaceOrderBtn: HTMLCollectionOf<any> = document.getElementsByClassName("item-place-order")[0].children;
         addFocusBackPlaceOrderBtn[0].classList.add('focusable');
-        if(menuItemFocus.current !== null) menuItemFocus.current.focus();
+        if(menuItemFocus.current !== null) 
+        {
+            menuItemFocus.current.focus();
+        }
     }
 
     function setIsModalCancelAndClose(menuItem) {
