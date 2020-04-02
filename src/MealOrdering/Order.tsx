@@ -83,7 +83,7 @@ function Order(props) {
             const selectMenuItem: HTMLCollectionOf<any> = document.getElementsByClassName("scrollitems")[0].children;
             if(modalButtonName) {
                 const menuItemIndex = meals.mealItems.findIndex(obj => {if(obj !==null) return obj.id === menuItemDetails.id});
-                menuItemFocus.current = selectMenuItem[menuItemIndex];
+                menuItemFocus.current = selectMenuItem[menuItemIndex + 1];
             }
             const element: HTMLCollectionOf<any> = document.getElementsByClassName("modalFocus");
             if(element[0].firstElementChild) {
@@ -118,7 +118,7 @@ function Order(props) {
         removeFocusFromBack[0].classList.add('focusable');
         const addFocusBackPlaceOrderBtn: HTMLCollectionOf<any> = document.getElementsByClassName("item-place-order")[0].children;
         addFocusBackPlaceOrderBtn[0].classList.add('focusable');
-        if(menuItemFocus.current !== null || menuItemFocus.current !== undefined) menuItemFocus.current.focus();
+        if(menuItemFocus.current !== null) menuItemFocus.current.focus();
     }
 
     function setIsModalCancelAndClose(menuItem) {
