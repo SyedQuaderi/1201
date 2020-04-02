@@ -6,7 +6,7 @@ function MenuItems(props) {
     return (
         <props.Col sm={7} className="scrollitems full-fixed-height remove-gutter">
             <div id="section02" className=" scrollToTop">
-                <a href="#section02"><img src={Arrow}/></a>
+                <a href="#section02" onClick={()=>props.scrollToTop()}><img src={Arrow}/></a>
             </div>
             {props.meals.mealItems.map((mealItem, i)=>
             <props.Focusable className="active" key={i} onClickEnter={() => props.setIsModalOpens(mealItem)}>
@@ -40,7 +40,7 @@ function MenuItems(props) {
             </props.Focusable>
             )}
             <div id="section01" className="scrollToBottom">
-                <a href="#section02"><img src={Arrow}/></a>
+                <a href="#section02" onClick={()=>props.scrollToBottom()}>><img src={Arrow}/></a>
             </div> 
         </props.Col>
     )

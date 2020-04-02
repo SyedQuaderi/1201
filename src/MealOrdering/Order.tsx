@@ -158,6 +158,64 @@ function Order(props) {
         }
     }, [storeMeal]);
 
+    var [scrollTopElement, scrollBottom]:any = [document.getElementById('section02'), document.getElementById('section01')];
+    const scrollItems:any = (document.getElementsByClassName('scrollitems') as HTMLCollectionOf<Element>);
+    
+    useEffect(()=>{
+        function scrollEvent(){
+            let insideScroll:number = 0;
+            for (var i=1; i <= scrollItems[0].children.length -2; i++) {
+                insideScroll += scrollItems[0].children[i].clientHeight;
+            }
+            if(insideScroll - scrollItems[0].scrollHeight ===  scrollItems[0].scrollTop) {
+                try {
+                    scrollTopElement.style.display = "none";
+                    scrollBottom.style.display = "block";
+                }
+                catch(error) {
+                    console.log(error);
+                }
+                
+            }
+            else if(insideScroll - scrollItems[0].scrollTop === scrollItems[0].clientHeight){
+                try {
+                    scrollBottom.style.display = "none";
+                    scrollTopElement.style.display = "block";
+                }
+                catch(error){
+                    console.log(error);
+                }
+            }
+        }
+        window.addEventListener("scroll", scrollEvent, true);
+        return () => {
+            window.removeEventListener("scroll", scrollEvent, true);
+        };
+    }, [scrollTopElement!== null]);
+
+    function scrollToBottom() {
+        scrollItems[0].scrollTo({
+            'behavior': 'smooth',
+            'left': 0,
+            'top': scrollItems[0].scrollHeight
+          });
+        scrollTopElement.style.display = "block";
+        scrollBottom.style.display = "none";
+        return false;
+    }
+
+    function scrollToTop() {
+        scrollItems[0].scrollTo({
+            'behavior': 'smooth',
+            'left': 0,
+            'top': scrollItems[0].offsetTop
+          });
+          scrollTopElement.style.display = "none";
+          scrollBottom.style.display = "block";
+        return false;
+    }
+
+
     const [caloriesProgressFlag, setCaloriesFlag] = useState<string>(moniter.left);
     const [proteinProgressFlag, setProteinFlag] = useState<string>(moniter.left);
     const [carbsProgressFlag, setCarbsFlag] = useState<string>(moniter.left);
@@ -342,7 +400,8 @@ function Order(props) {
                             <Col sm={12} className="order-panel">
                                 <Row className="">
                                     <MenuItems meals={meals} setIsModalOpens={setIsModalOpens}
-                                             Focusable={Focusable} Row={Row} Col={Col} Button={Button}/>
+                                             Focusable={Focusable} Row={Row} Col={Col} Button={Button}
+                                             scrollToBottom={scrollToBottom} scrollToTop={scrollToTop}/>
                                     <Col sm={5} className="order-summary full-fixed-height">
                                         <Row>
                                             <Col className="order-section">
