@@ -114,7 +114,7 @@ function Order(props) {
             const addFocusFromMenu = avaialbleMenu[i].children[0];
             addFocusFromMenu.classList.value = 'section'+ addFocusFromMenu.classList.value;
         }
-        removeFocusFromBack[0].classList.add('focusable');
+        //removeFocusFromBack[0].classList.add('focusable');
         const addFocusBackPlaceOrderBtn: HTMLCollectionOf<any> = document.getElementsByClassName("item-place-order")[0].children;
         addFocusBackPlaceOrderBtn[0].classList.add('focusable');
         if(menuItemFocus.current !== null || menuItemFocus.current !== undefined) {
