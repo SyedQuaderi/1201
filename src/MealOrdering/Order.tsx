@@ -40,7 +40,9 @@ function Order(props) {
     const [placeOrderFlag, setPlaceOrderFlag] = useState<boolean>(false);
     
     const focusOnOrderedList:any = useRef(null);
+    localStorage.clear();
     useEffect(() => {
+        
         props.toastr.clear();
         if(orderedList !== undefined) {
             const focusplaceOrderButton: HTMLCollectionOf<any> = document.getElementsByClassName("item-place-order")[0].children;
