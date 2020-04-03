@@ -326,9 +326,9 @@ function Order(props) {
         }
         else {
             arrowDown.style.display = "block";
-            scrollItems[0].scrollTo({
-                'top': scrollItems[0].offsetTop
-            });
+            // scrollItems[0].scrollTo({
+            //     'top': scrollItems[0].offsetTop
+            // });
         }
     }
 
