@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
+import SpatialNavigation, {FocusableSection, Focusable } from 'react-js-spatial-navigation';
 
 function AvailableMenu(props) {
     const [meal, setMeal] = useState<any>(false);
