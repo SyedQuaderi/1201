@@ -77,7 +77,6 @@ function Order(props) {
         setIsModalOpen(true);
     }
     const avaialbleMenu: HTMLCollectionOf<any> = document.getElementsByClassName("meal-type");
-    const removeFocusFromBack:HTMLCollectionOf<any> = document.getElementsByClassName("meal-ordering-order-icon");
     useEffect(() => {
         if(isModalOpen) {
             const selectMenuItem: HTMLCollectionOf<any> = document.getElementsByClassName("scrollitems")[0].children;
@@ -317,6 +316,7 @@ function Order(props) {
         setMealItems({mealItems: mealType.mealItems});
         setfocusOnMenuItem(mealType.id);
         setFlag(false);
+        const removeFocusFromBack:HTMLCollectionOf<any> = document.getElementsByClassName("meal-ordering-order-icon");
         removeFocusFromBack[0].children[0].classList.add('focusable');
         const arrowDown: any  = document.getElementById('section01');
         if(mealType.mealItems.length <= 5) {
@@ -328,9 +328,8 @@ function Order(props) {
     }
 
     function removeFocusFromIcon() {
-        if(removeFocusFromBack[0].children[0].classList.value === 'focusable') {
-            removeFocusFromBack[0].children[0].classList.remove('focusable');
-        }
+        const removeFocusFromOrderIcon:any = document.getElementsByClassName('meal-ordering-order-icon')[0].children;
+        removeFocusFromOrderIcon[0].classList.remove('focusable');
     }
 
     function selectSubMealType (subMealType) {
