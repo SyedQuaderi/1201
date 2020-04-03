@@ -77,6 +77,8 @@ function Order(props) {
         setIsModalOpen(true);
     }
     const avaialbleMenu: HTMLCollectionOf<any> = document.getElementsByClassName("meal-type");
+    
+    let lastFocusedItem = useRef<String>('');
     useEffect(() => {
         if(isModalOpen) {
             const selectMenuItem: HTMLCollectionOf<any> = document.getElementsByClassName("scrollitems")[0].children;
@@ -96,7 +98,10 @@ function Order(props) {
 
             for(var i=0; i < avaialbleMenu.length; i++) {
                 let removeFocusFromMenu = avaialbleMenu[i].children[0];
-                removeFocusFromMenu.classList.value = removeFocusFromMenu.classList.value.substring(7);
+                lastFocusedItem.current = removeFocusFromMenu.classList.value;
+                console.log("removeFocusFromMenu.classList.value", removeFocusFromMenu.classList.value);
+                removeFocusFromMenu.classList.remove(lastFocusedItem.current);
+                console.log("removeFocusFromMenu.classList", removeFocusFromMenu.classList);
             }
             const removeFocuFromPlaceOrderBtn: HTMLCollectionOf<any> = document.getElementsByClassName("item-place-order")[0].children;
             removeFocuFromPlaceOrderBtn[0].classList.remove('focusable');
@@ -111,7 +116,8 @@ function Order(props) {
         }
         for(var i=0; i < avaialbleMenu.length; i++) {
             let addFocusFromMenu = avaialbleMenu[i].children[0];
-            addFocusFromMenu.classList.value = 'section'+ addFocusFromMenu.classList.value;
+            addFocusFromMenu.classList.add(lastFocusedItem.current);
+            console.log("addFocusFromMenu.classList", addFocusFromMenu.classList);
         }
         const addFocusBackPlaceOrderBtn: HTMLCollectionOf<any> = document.getElementsByClassName("item-place-order")[0].children;
         addFocusBackPlaceOrderBtn[0].classList.add('focusable');
