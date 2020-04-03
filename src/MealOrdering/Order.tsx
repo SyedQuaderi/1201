@@ -317,7 +317,6 @@ function Order(props) {
     }
 
     function selectMealType(mealType) {
-        const scrollItems:any = (document.getElementsByClassName('scrollitems') as HTMLCollectionOf<Element>);
         setMealItems({mealItems: mealType.mealItems});
         setfocusOnMenuItem(mealType.id);
         setFlag(false);
@@ -328,11 +327,6 @@ function Order(props) {
             arrowDown.style.display = "none";
         }
         else {
-            scrollItems[0].scrollTo({
-                'behavior': 'auto',
-                'left': 0,
-                'top': scrollItems[0].offsetTop
-              });
             arrowDown.style.display = "block";
         }
     }
