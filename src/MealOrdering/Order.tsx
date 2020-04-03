@@ -317,6 +317,7 @@ function Order(props) {
     }
 
     function selectMealType(mealType) {
+        const scrollItems:any = (document.getElementsByClassName('scrollitems') as HTMLCollectionOf<Element>);
         setMealItems({mealItems: mealType.mealItems});
         setfocusOnMenuItem(mealType.id);
         setFlag(false);
