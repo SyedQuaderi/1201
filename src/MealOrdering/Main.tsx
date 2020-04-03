@@ -144,7 +144,6 @@ function Main(props) {
     }, [state])
     const confirmBtn:any = useRef(null);
     const homeBtnFocus:any = useRef(null);
-    
     const [focus, setFocus] = useState<boolean>(false);
     useEffect(()=>{
         if(isConfirmationPageOpen) {
@@ -328,7 +327,7 @@ function Main(props) {
                                                         <Col sm={4} key={i} className="meal-session">
                                                             <Focusable onClickEnter={()=> orderMeal(meal)} onFocus={()=> focusOnSessions()}>
                                                             <Button onClick={()=> orderMeal(meal)} className={"session-times" + (meal.mealDayId === 1 && mealAvailability === meal.availability ? ' removeFocus' : ' focus')} 
-                                                                >
+                                                                disabled={meal.mealDayId === 1 && mealAvailability === meal.availability ? true : false}>
                                                                 <Row >
                                                                     <Col sm={4} className="text-center icon-container">
                                                                         <div className="meal-course-image" >

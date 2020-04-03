@@ -141,7 +141,7 @@
             padding: 0;
             img {
                 width: 298px;
-                height: 216px;
+                height: 215px;
             }
             .item-details {
                 margin-left: -10px;
@@ -394,18 +394,16 @@
                 display: table-cell;
             }
             .btn:disabled {
-                border: none;
-                background-color: $disabled-button-bg-color;
-                font-weight: $header-font-weight;
-                color: $disabled-button-font-color;
-                font-size: 38px;
-                pointer-events: none;
+                @include disabledBtn;
             }
             [tabIndex="-1"]:focus {
                 .item-order-button {
                     background-color: $placed-order-buttons-font-color;
                     color: $primary-color-active;
                     border: $primary-color-active solid 1px;
+                }
+                .btn-disabled {
+                    @include disabledBtn;
                 }
             }
         }

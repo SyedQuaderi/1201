@@ -1,4 +1,4 @@
-import React, {CSSProperties, useEffect, useState, useRef, useReducer} from 'react';
+import React, {CSSProperties, useEffect, useState, useRef} from 'react';
 import './Order.scss';
 import PES from '../globalVariables';
 import {
@@ -77,7 +77,6 @@ function Order(props) {
         setIsModalOpen(true);
     }
     const avaialbleMenu: HTMLCollectionOf<any> = document.getElementsByClassName("meal-type");
-    
     let lastFocusedItem = useRef<String>('');
     useEffect(() => {
         if(isModalOpen) {
@@ -99,9 +98,7 @@ function Order(props) {
             for(var i=0; i < avaialbleMenu.length; i++) {
                 let removeFocusFromMenu = avaialbleMenu[i].children[0];
                 lastFocusedItem.current = removeFocusFromMenu.classList.value;
-                console.log("removeFocusFromMenu.classList.value", removeFocusFromMenu.classList.value);
                 removeFocusFromMenu.classList.remove(lastFocusedItem.current);
-                console.log("removeFocusFromMenu.classList", removeFocusFromMenu.classList);
             }
             const removeFocuFromPlaceOrderBtn: HTMLCollectionOf<any> = document.getElementsByClassName("item-place-order")[0].children;
             removeFocuFromPlaceOrderBtn[0].classList.remove('focusable');
@@ -117,7 +114,6 @@ function Order(props) {
         for(var i=0; i < avaialbleMenu.length; i++) {
             let addFocusFromMenu = avaialbleMenu[i].children[0];
             addFocusFromMenu.classList.add(lastFocusedItem.current);
-            console.log("addFocusFromMenu.classList", addFocusFromMenu.classList);
         }
         const addFocusBackPlaceOrderBtn: HTMLCollectionOf<any> = document.getElementsByClassName("item-place-order")[0].children;
         addFocusBackPlaceOrderBtn[0].classList.add('focusable');
@@ -330,6 +326,9 @@ function Order(props) {
         }
         else {
             arrowDown.style.display = "block";
+            scrollItems[0].scrollTo({
+                'top': scrollItems[0].offsetTop
+            });
         }
     }
 
@@ -341,7 +340,7 @@ function Order(props) {
     function selectSubMealType (subMealType) {
         if(subMealType.id === focusOnMenuItem) {
             setFlag(true);
-            setBlurOnMenuItem(subMealType.id)
+            setBlurOnMenuItem(subMealType.id);
         }
         else {
             setFlag(false);
