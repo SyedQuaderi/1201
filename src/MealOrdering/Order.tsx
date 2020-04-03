@@ -101,7 +101,6 @@ function Order(props) {
             }
             const removeFocuFromPlaceOrderBtn: HTMLCollectionOf<any> = document.getElementsByClassName("item-place-order")[0].children;
             removeFocuFromPlaceOrderBtn[0].classList.remove('focusable');
-            removeFocusFromBack[0].children[0].classList.remove('focusable');
         }
     }, [isModalOpen])
     
@@ -115,7 +114,6 @@ function Order(props) {
             const addFocusFromMenu = avaialbleMenu[i].children[0];
             addFocusFromMenu.classList.value = 'section'+ addFocusFromMenu.classList.value;
         }
-        removeFocusFromBack[0].children[0].classList.add('focusable');
         const addFocusBackPlaceOrderBtn: HTMLCollectionOf<any> = document.getElementsByClassName("item-place-order")[0].children;
         addFocusBackPlaceOrderBtn[0].classList.add('focusable');
         if(menuItemFocus.current !== null) 
@@ -330,7 +328,9 @@ function Order(props) {
     }
 
     function removeFocusFromIcon() {
-        removeFocusFromBack[0].children[0].classList.remove('focusable');
+        if(removeFocusFromBack[0].children[0].classList.value === 'focusable') {
+            removeFocusFromBack[0].children[0].classList.remove('focusable');
+        }
     }
 
     function selectSubMealType (subMealType) {
