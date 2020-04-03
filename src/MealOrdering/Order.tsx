@@ -40,9 +40,7 @@ function Order(props) {
     const [placeOrderFlag, setPlaceOrderFlag] = useState<boolean>(false);
     
     const focusOnOrderedList:any = useRef(null);
-    localStorage.clear();
     useEffect(() => {
-        
         props.toastr.clear();
         if(orderedList !== undefined) {
             const focusplaceOrderButton: HTMLCollectionOf<any> = document.getElementsByClassName("item-place-order")[0].children;
@@ -78,10 +76,11 @@ function Order(props) {
         setMenuItemDetails(menuItem);
         setIsModalOpen(true);
     }
-    const avaialbleMenu: HTMLCollectionOf<any> = document.getElementsByClassName("meal-type");
+    
     let lastFocusedItem = useRef<String>('');
     useEffect(() => {
         if(isModalOpen) {
+            const avaialbleMenu: HTMLCollectionOf<any> = document.getElementsByClassName("meal-type");
             const selectMenuItem: HTMLCollectionOf<any> = document.getElementsByClassName("scrollitems")[0].children;
             if(modalButtonName) {
                 const menuItemIndex = meals.mealItems.findIndex(obj => {if(obj !==null) return obj.id === menuItemDetails.id});
@@ -108,6 +107,7 @@ function Order(props) {
     }, [isModalOpen])
     
     function addFocusBacktoPage() {
+        const avaialbleMenu: HTMLCollectionOf<any> = document.getElementsByClassName("meal-type");
         const unFocusedElements: HTMLCollectionOf<any> = document.getElementsByClassName("scrollitems")[0].children;
         for(var i=0; i < unFocusedElements.length; i++) {
             const removeFocus:any = unFocusedElements[i];
