@@ -1,5 +1,11 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+The Demo is available on thi webite: https://mealordering-react.netlify.com/ 
+
+Screen Resolution : 1920 X 1080
+
+Works on TV if launched from the Dashboard(in professional settings).
+
 ## Available Scripts
 
 In the project directory, you can run:
